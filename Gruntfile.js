@@ -35,6 +35,14 @@ module.exports = function(grunt){
                     "styles/style.css"
                 ],
                 "dest": "server/public/assets"
+            },
+            views: {
+                expand: true,
+                cwd: 'client',
+                src: [
+                    "views/*.html"
+                ],
+                "dest": "server/public/assets"
             }
         }
     });
