@@ -67,7 +67,7 @@ function appendTasks(){
     $("#someContainer").empty();
 
     for(var i = 0 ; i < taskData.length ; i ++){
-        $("#someContainer").append("<div class='task well col-md-3'></div>");
+        $("#someContainer").append("<div class='task col-md-3'></div>");
         var $el = $("#someContainer").children().last();
         $el.data("id", taskData[i].id);
         $el.data("complete", taskData[i].complete);
@@ -75,7 +75,7 @@ function appendTasks(){
             $el.css("text-decoration", "line-through");
         }
 
-        $el.append("<p class='lead'>" + taskData[i].text + "</p>");
+        $el.append("<p>" + taskData[i].text + "</p>");
         $el.append("<button class='btn btn-danger delete'>X</button>");
     }
 }
