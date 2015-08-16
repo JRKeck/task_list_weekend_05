@@ -3,7 +3,7 @@ var router = express.Router();
 var pg = require('pg');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo_database';
 
-router.post('/todos', function(req, res) {
+router.post('/addtask', function(req, res) {
     var results = [];
 
     // Grab data from http request
@@ -37,7 +37,7 @@ router.post('/todos', function(req, res) {
     });
 });
 
-router.get('/todos', function(req, res) {
+router.get('/gettasks', function(req, res) {
     var results = [];
 
     // Get a Postgres client from the connection pool
@@ -66,15 +66,15 @@ router.get('/todos', function(req, res) {
 
 });
 
-router.put('/todos/:todo_id', function(req, res) {
-
+router.put('/updatetask/:task_id', function(req, res) {
+    console.log("Put hit server" + req.params.task_id);
     var results = [];
 
     // Grab data from the URL parameters
-    var id = req.params.todo_id;
+    var id = req.params.task_id;
 
     // Grab data from http request
-    var data = {text: req.body.text, complete: req.body.complete};
+    var data = {text: req.body.text, complete: !req.body.complete};
 
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
@@ -105,7 +105,7 @@ router.put('/todos/:todo_id', function(req, res) {
 
 });
 
-router.delete('/todos/:todo_id', function(req, res) {
+router.delete('/deletetask/:todo_id', function(req, res) {
 
     var results = [];
 

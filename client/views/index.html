@@ -13,30 +13,27 @@
 <div class="container" ng-controller="TaskController">
     <button class="btn btn-info get">Get Info</button>
 
-    <div class="col-md-4">
+    <div class="enter-task col-xs-12">
         <form id="taskForm" method="post">
             <div>
                 <label for="text">Task:</label>
-                <input type="text" name="text" id="text"/>
-                <input type="submit" class="btn btn-info post" value="Create Task"/>
+                <input ng-model="note.text"  type="text" name="text" id="text"/>
+                <input type="submit" class="btn btn-info post" value="Create Task" ng-click="addTask(note)"/>
             </div>
         </form>
     </div>
 
 
-    <div id="someContainer" class="container">
-        <div class="tasklist">
-            <div class="col-md-3" ng-repeat="task in taskData">
-                <p class="task-name">{{task.text}}</p>
-                <button class='btn btn-danger delete'>X</button>
-            </div>
+    <div id="someContainer" class="task-list col-xs-12">
+        <div class="col-md-3 task" ng-repeat="task in taskData">
+            <p class="task-name" ng-click="updateTask(task)" ng-class="{true: 'task-complete'}[task.complete]">{{task.text}}</p>
+            <p class="complete">{{task.complete}}</p>
+            <button class='btn btn-danger delete' ng-click="deleteTask(task)">X</button>
         </div>
     </div>
 </div>
 
 <!--SCRIPTS-->
-<!--<script type="text/javascript" src="/vendors/jquery/dist/jquery.min.js"></script>-->
-<!--<script type="text/javascript" src="/assets/scripts/app.min.js"></script>-->
 <script type="text/javascript" src="/vendors/angular/angular.min.js"></script>
 <script type="text/javascript" src="/assets/scripts/app_angular.min.js"></script>
 </body>
