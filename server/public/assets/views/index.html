@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myTaskApp">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Postgres TODO App</title>
@@ -10,29 +10,29 @@
 
 </head>
 <body>
-    <div class="container">
-        <button class="btn btn-info get">Get Info</button>
+<div class="container" ng-controller="TaskController">
+    <button class="btn btn-info get">Get Info</button>
 
-        <div class="col-md-4">
-            <form id="taskForm" method="post">
-                <div>
-                    <label for="text">Task:</label>
-                    <input type="text" name="text" id="text"/>
-                    <input type="submit" class="btn btn-info post" value="Create Task"/>
-                </div>
-            </form>
-        </div>
+    <div class="col-md-4">
+        <form id="taskForm" method="post">
+            <div>
+                <label for="text">Task:</label>
+                <input type="text" name="text" id="text"/>
+                <input type="submit" class="btn btn-info post" value="Create Task"/>
+            </div>
+        </form>
     </div>
+
 
     <div id="someContainer" class="container">
-
+        <div class="col-md-3" ng-repeat="task in taskData">{{task.text}}</div>
     </div>
+</div>
 
-
-
-    <!--SCRIPTS-->
-    <script type="text/javascript" src="/vendors/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="/vendors/angular/angular.min.js"></script>
-    <script type="text/javascript" src="/assets/scripts/app.min.js"></script>
+<!--SCRIPTS-->
+<!--<script type="text/javascript" src="/vendors/jquery/dist/jquery.min.js"></script>-->
+<!--<script type="text/javascript" src="/assets/scripts/app.min.js"></script>-->
+<script type="text/javascript" src="/vendors/angular/angular.min.js"></script>
+<script type="text/javascript" src="/assets/scripts/app_angular.min.js"></script>
 </body>
 </html>
