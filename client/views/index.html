@@ -25,7 +25,12 @@
 
 
     <div id="someContainer" class="container">
-        <div class="col-md-3" ng-repeat="task in taskData">{{task.text}}</div>
+        <div class="tasklist">
+            <div class="col-md-3" ng-repeat="task in taskData">
+                <p class="task-name">{{task.text}}</p>
+                <button class='btn btn-danger delete'>X</button>
+            </div>
+        </div>
     </div>
 </div>
 
