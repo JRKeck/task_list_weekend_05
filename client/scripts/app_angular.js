@@ -21,7 +21,7 @@ myTaskApp.controller("TaskController", ['$scope', '$http', function($scope, $htt
     };
 
     $scope.deleteTask = function(task){
-        //DELETER
+        //DELETE
         $http.delete('/api/deletetask/'+task.id).then($scope.getTasks());
     };
     $scope.getTasks();
