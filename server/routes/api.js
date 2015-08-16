@@ -3,6 +3,8 @@ var router = express.Router();
 var pg = require('pg');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo_database';
 
+var Tasks = mongoose.model('tasks', {message: String, complete: Boolean});
+
 router.post('/addtask', function(req, res) {
     var results = [];
 
