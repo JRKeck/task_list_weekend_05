@@ -1,148 +1,41 @@
 var express = require('express');
 var router = express.Router();
-var pg = require('pg');
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo_database';
+var mongoose = require('mongoose');
+var path = require('path');
 
-var Tasks = mongoose.model('tasks', {message: String, complete: Boolean});
+var Task = mongoose.model('task', {text: String, complete: Boolean});
 
-router.post('/addtask', function(req, res) {
-    var results = [];
-
-    // Grab data from http request
-    var data = {text: req.body.text, complete: false};
-
-    // Get a Postgres client from the connection pool
-    pg.connect(connectionString, function(err, client, done) {
-
-        // SQL Query > Insert Data
-        client.query("INSERT INTO items(text, complete) values($1, $2)", [data.text, data.complete]);
-
-        // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC");
-
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
-        });
-
-        // After all data is returned, close connection and return results
-        query.on('end', function() {
-            client.end();
-            return res.json(results);
-        });
-
-        // Handle Errors
-        if(err) {
-            console.log(err);
-        }
-
+router.post("/addtask", function(req,res,next){
+    var task = new Task({text: req.body.text, complete: false});
+    task.save(function(err){
+        if(err) console.log('Post Error', err);
+        res.send('Post Complete');
     });
 });
 
-router.get('/gettasks', function(req, res) {
-    var results = [];
-
-    // Get a Postgres client from the connection pool
-    pg.connect(connectionString, function(err, client, done) {
-
-        // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC;");
-
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
-        });
-
-        // After all data is returned, close connection and return results
-        query.on('end', function() {
-            client.end();
-            return res.json(results);
-        });
-
-        // Handle Errors
-        if(err) {
-            console.log(err);
-        }
-
+router.get("/gettasks", function(req,res,next){
+    return Task.find({}).exec(function(err, info){
+        if(err) throw new Error(err);
+        res.send(JSON.stringify(info));
     });
-
 });
 
-router.put('/updatetask/:task_id', function(req, res) {
-    console.log("Put hit server" + req.params.task_id);
-    var results = [];
-
-    // Grab data from the URL parameters
-    var id = req.params.task_id;
-
-    // Grab data from http request
-    var data = {text: req.body.text, complete: !req.body.complete};
-
-    // Get a Postgres client from the connection pool
-    pg.connect(connectionString, function(err, client, done) {
-
-        // SQL Query > Update Data
-        client.query("UPDATE items SET text=($1), complete=($2) WHERE id=($3)", [data.text, data.complete, id]);
-
-        // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC");
-
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
-        });
-
-        // After all data is returned, close connection and return results
-        query.on('end', function() {
-            client.end();
-            return res.json(results);
-        });
-
-        // Handle Errors
-        if(err) {
-            console.log(err);
+router.put("/updatetask/:id", function(req, res, next){
+    Task.findByIdAndUpdate(req.params.id, {complete: !req.body.complete}, function(err, post){
+        if(err){
+            console.log("Error: ", err);
         }
-
+        res.json(post);
     });
-
 });
 
-router.delete('/deletetask/:todo_id', function(req, res) {
-
-    var results = [];
-
-    // Grab data from the URL parameters
-    var id = req.params.todo_id;
-
-
-    // Get a Postgres client from the connection pool
-    pg.connect(connectionString, function(err, client, done) {
-
-        // SQL Query > Delete Data
-        client.query("DELETE FROM items WHERE id=($1)", [id]);
-
-        // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC");
-
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
-        });
-
-        // After all data is returned, close connection and return results
-        query.on('end', function() {
-            client.end();
-            return res.json(results);
-        });
-
-        // Handle Errors
-        if(err) {
-            console.log(err);
+router.delete("/deletetask/:id", function(req, res, next){
+    Task.findByIdAndRemove(req.params.id, function(err, post){
+        if(err){
+            console.log("Error: ", err);
         }
-
+        res.json(post);
     });
-
 });
-
 
 module.exports = router;

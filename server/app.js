@@ -6,6 +6,10 @@ var bodyParser = require('body-parser');
 var api = require('./routes/api');
 var index = require('./routes/index');
 
+var mongoose = require("mongoose");
+
+mongoose.connect('mongodb://localhost/todo_task_app');
+
 app.set('port', (process.env.PORT || 3000));
 
 app.use(bodyParser.json());
@@ -17,3 +21,5 @@ app.use('/', index);
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
+
+module.exports = app;

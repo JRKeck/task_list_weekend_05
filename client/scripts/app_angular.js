@@ -4,8 +4,10 @@ myTaskApp.controller("TaskController", ['$scope', '$http', function($scope, $htt
     $scope.note= {};
 
     $scope.getTasks = function(){
+        console.log("Get request made")
         //GET
         $http.get('/api/gettasks').then(function(response){
+            console.log(response.data);
             $scope.taskData = response.data;
         });
     };
@@ -17,12 +19,12 @@ myTaskApp.controller("TaskController", ['$scope', '$http', function($scope, $htt
 
     $scope.updateTask = function(task){
         //PUT
-        $http.put('/api/updatetask/'+task.id, task).then($scope.getTasks());
+        $http.put('/api/updatetask/'+task._id, task).then($scope.getTasks());
     };
 
     $scope.deleteTask = function(task){
         //DELETE
-        $http.delete('/api/deletetask/'+task.id).then($scope.getTasks());
+        $http.delete('/api/deletetask/'+task._id).then($scope.getTasks());
     };
     $scope.getTasks();
 
