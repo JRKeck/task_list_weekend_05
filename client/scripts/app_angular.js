@@ -4,7 +4,7 @@ myTaskApp.controller("TaskController", ['$scope', '$http', function($scope, $htt
     $scope.note= {};
 
     $scope.getTasks = function(){
-        console.log("Get request made")
+        console.log("Get request made");
         //GET
         $http.get('/api/gettasks').then(function(response){
             console.log(response.data);
