@@ -84,10 +84,16 @@ header {
     padding-top: 15px; }
   .task-list .task .task-info {
     background-color: #585F6F;
-    padding: 15px 20px; }
+    padding: 15px 20px;
+    -webkit-box-shadow: -15px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: -15px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: -15px 0px 15px 0px rgba(0, 0, 0, 0.1); }
     .task-list .task .task-info.complete {
       background-color: #454B5A;
-      color: #A3A6A8; }
+      color: #A3A6A8;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none; }
     .task-list .task .task-info .task-name {
       font-size: 22px;
       font-weight: 100;

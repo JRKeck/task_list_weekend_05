@@ -40,9 +40,13 @@ gulp.task('views', function() {
 // Copy Node Modules to Public Vendors
 gulp.task('copy-vendors', function() {
     gulp.src(['node_modules/angular/angular.min.js', 'node_modules/angular/angular.min.js.map'])
-        .pipe(gulp.dest('server/public/assets/vendors/angular'));
+        .pipe(gulp.dest('server/public/vendors/angular'));
     gulp.src(['node_modules/bootstrap/dist/css/bootstrap.min.css'])
-        .pipe(gulp.dest('server/public/assets/vendors/bootstrap'));
+        .pipe(gulp.dest('server/public/vendors/bootstrap'));
+    gulp.src(['node_modules/font-awesome/css/font-awesome.min.css', 'node_modules/font-awesome/css/font-awesome.css.map'])
+        .pipe(gulp.dest('server/public/vendors/font-awesome/css'));
+    gulp.src(['node_modules/font-awesome/fonts/*'])
+        .pipe(gulp.dest('server/public/vendors/font-awesome/fonts'));
 });
 
 // Watch Files For Changes
@@ -55,14 +59,3 @@ gulp.task('watch', function() {
 // Default Task
 gulp.task('default', ['lint', 'sass', 'scripts', 'views', 'copy-vendors', 'watch']);
 
-// Copy Node Modules to Public Vendors
-gulp.task('copy-vendors', function() {
-    gulp.src(['node_modules/angular/angular.min.js', 'node_modules/angular/angular.min.js.map'])
-        .pipe(gulp.dest('server/public/vendors/angular'));
-    gulp.src(['node_modules/bootstrap/dist/css/bootstrap.min.css'])
-        .pipe(gulp.dest('server/public/vendors/bootstrap'));
-    gulp.src(['node_modules/font-awesome/css/font-awesome.min.css', 'node_modules/font-awesome/css/font-awesome.css.map'])
-        .pipe(gulp.dest('server/public/vendors/font-awesome/css'));
-    gulp.src(['node_modules/font-awesome/fonts/*'])
-        .pipe(gulp.dest('server/public/vendors/font-awesome/fonts'));
-});

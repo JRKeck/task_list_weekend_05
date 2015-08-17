@@ -109,9 +109,15 @@ header {
     .task-info {
       background-color: $bg-task;
       padding: $task-padding-top 20px;
+      -webkit-box-shadow: -15px 0px 15px 0px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow:    -15px 0px 15px 0px rgba(0, 0, 0, 0.1);
+      box-shadow:         -15px 0px 15px 0px rgba(0, 0, 0, 0.1);
       &.complete {
         background-color: $bg-complete;
         color: $txt-clr-complete;
+        -webkit-box-shadow: none;
+        -moz-box-shadow:    none;
+        box-shadow:         none;
       }
       .task-name {
         font-size: 22px;
