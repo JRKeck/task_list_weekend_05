@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html ng-app="myTaskApp">
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>Postgres TODO App</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
 
     <!--STYLES-->
-    <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100|Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/styles/style.css">
 
 </head>
-<body>
-<div class="container" ng-controller="TaskController">
-    <button class="btn btn-info get">Get Info</button>
+<body ng-controller="TaskController">
+<header>
+    <h1>All Tasks</h1>
+    <button class="refresh" ng-click="getTasks()"><i class="fa fa-refresh fa-2x"></i><span class="hidden-xs">Refresh Tasks</span></button>
+    <button class="task-add" ng-click=""><span class="hidden-xs">Add Task</span><i class="fa fa-plus-circle fa-2x"></i></button>
+</header>
+<div class="container">
 
-    <div class="enter-task col-xs-12">
+    <div class="task-enter row">
         <form id="taskForm" method="post">
-            <div>
-                <label for="text">Task:</label>
-                <input ng-model="note.text"  type="text" name="text" id="text"/>
-                <input type="submit" class="btn btn-info post" value="Create Task" ng-click="addTask(note)"/>
+            <div class="col-xs-8 col-sm-9">
+                <label class="sr-only" for="text">Task:</label>
+                <input class="task-name" ng-model="note.text"  type="text" name="text" id="text" placeholder="Enter Task"/>
+            </div>
+            <div class="col-xs-4 col-sm-3">
+                <input type="submit" class="task-post" value="Create Task" ng-click="addTask(note)"/>
             </div>
         </form>
     </div>
 
 
-    <div id="someContainer" class="task-list col-xs-12">
-        <div class="col-md-3 task" ng-repeat="task in taskData">
-            <p class="task-name" ng-click="updateTask(task)" ng-class="{true: 'task-complete'}[task.complete]">{{task.text}}</p>
-            <p class="complete">{{task.complete}}</p>
-            <button class='btn btn-danger delete' ng-click="deleteTask(task)">X</button>
+    <div class="task-list">
+        <div class="task row" ng-repeat="task in taskData | orderBy: 'task.complete'">
+            <div class="task-complete col-xs-2">
+                <div ng-click="updateTask(task)" class="task-complete-icon">
+                    <i ng-show="!task.complete" class="fa fa-circle-thin fa-2x"></i>
+                    <i ng-show="task.complete" class="fa fa-check-circle fa-2x"></i>
+                </div>
+            </div>
+            <div class="task-info col-xs-10" ng-class="{true: 'complete'}[task.complete]">
+                <button class='task-delete' ng-click="deleteTask(task)"><i class="fa fa-trash-o fa-2x"></i></button>
+                <p class="task-name">{{task.text}}</p>
+
+            </div>
+
+
+
         </div>
     </div>
 </div>
 
 <!--SCRIPTS-->
 <script type="text/javascript" src="/vendors/angular/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-animate.min.js"></script>
 <script type="text/javascript" src="/assets/scripts/project-scripts.min.js"></script>
 </body>
 </html>

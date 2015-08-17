@@ -1,8 +1,124 @@
+/* style.scss */
+
+@import 'variables';
+
 body {
-  background-color: #fff;
+  background-color: $bg-page;
+  color: $txt-clr-main;
+  font-family: $font-fam-body;
 }
-.task {
-  .task-complete{
-    text-decoration: line-through;
+header {
+  background-color: $bg-header;
+  text-align: center;
+  position: relative;
+  padding: 20px 0;
+  h1 {
+    color: $txt-clr-main;
+    margin: 0;
+    font-family: $font-fam-headings;
+    font-size: 20px;
+  }
+
+  button {
+    position: absolute;
+    top: 20px;
+    color: $bg-task;
+    background-color: transparent;
+    border: none;
+    $header-btn-side-margin : 20px;
+    $header-btn-span-margin : 10px;
+    &.refresh {
+      left: $header-btn-side-margin;
+      span {
+        margin-left: $header-btn-span-margin;
+      }
+    }
+    &.task-add {
+      right: $header-btn-side-margin;
+      span {
+        margin-right: $header-btn-span-margin;
+      }
+    }
+    span {
+      vertical-align: text-bottom;
+      font-size: 18px;
+    }
+  }
+}
+.container {
+  max-width: $container-max-width;
+}
+.task-enter{
+  background-color: $bg-task;
+  padding: 20px 15px;
+  border-bottom: 1px solid $txt-clr-complete;
+  input.task-name {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $txt-clr-complete;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 100;
+    &:focus {
+      outline: none;
+    }
+  }
+  input.task-post {
+    background-color: transparent;
+    border: 1px solid $txt-clr-complete;
+    color: $txt-clr-complete;
+    width: 100%;
+    padding: 5px;
+    font-family: $font-fam-headings;
+  }
+}
+.task-list {
+  .task {
+    $task-right-border-size : 10px;
+    $task-padding-top : 15px;
+    background-color: $bg-complete;
+    border-bottom: 1px solid $txt-clr-complete;
+    @media (max-width: $container-max-width+15px){
+      margin-right: -15px;
+    }
+    &:nth-child(4n+1) {
+      border-right: $task-right-border-size solid $task-one-color;
+    }
+    &:nth-child(4n+2) {
+      border-right: $task-right-border-size solid $task-two-color;
+    }
+    &:nth-child(4n+3) {
+      border-right: $task-right-border-size solid $task-three-color;
+    }
+    &:nth-child(4n+4) {
+      border-right: $task-right-border-size solid $task-four-color;
+    }
+    .task-complete {
+      color: $txt-clr-complete;
+      cursor: pointer;
+      text-align: center;
+      padding-top: $task-padding-top;
+
+    }
+    .task-info {
+      background-color: $bg-task;
+      padding: $task-padding-top 20px;
+      &.complete {
+        background-color: $bg-complete;
+        color: $txt-clr-complete;
+      }
+      .task-name {
+        font-size: 22px;
+        font-weight: 100;
+        margin-bottom: 0;
+        letter-spacing: 1px;
+      }
+      .task-delete {
+        float: right;
+        background-color: transparent;
+        border: none;
+        color: $txt-clr-complete;
+      }
+    }
   }
 }
