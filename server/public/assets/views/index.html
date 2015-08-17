@@ -35,7 +35,7 @@
 
 
     <div class="task-list">
-        <div class="task row" ng-repeat="task in taskData | orderBy: 'task.complete'">
+        <div class="task row" ng-repeat="task in taskData | orderBy: ['complete', '_id']">
             <div class="task-complete col-xs-2">
                 <div ng-click="updateTask(task)" class="task-complete-icon">
                     <i ng-show="!task.complete" class="fa fa-circle-thin fa-2x"></i>
