@@ -54,7 +54,14 @@ header {
     color: #A3A6A8;
     width: 100%;
     padding: 5px;
-    font-family: "Lato", sans-serif; }
+    font-family: "Lato", sans-serif;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px; }
+    .task-enter input.task-post:hover {
+      border-color: #fff;
+      color: #fff; }
 
 .task-list .task {
   background-color: #454B5A;
