@@ -1,6 +1,5 @@
 body {
-    background-color: #fff;
-}
-.task .task-complete{
-    text-decoration: line-through;
-}
+  background-color: #fff; }
+
+.task .task-complete {
+  text-decoration: line-through; }
