@@ -11,10 +11,13 @@ myTaskApp.controller("TaskController", ['$scope', '$http', function($scope, $htt
             $scope.taskData = response.data;
         });
     };
+    $scope.clearTaskForm = function(){
+      $scope.note = {};
+    };
 
     $scope.addTask = function(note){
         //POST
-        $http.post('/api/addtask', note).then($scope.getTasks());
+        $http.post('/api/addtask', note).then($scope.getTasks(), $scope.clearTaskForm());
     };
 
     $scope.updateTask = function(task){
