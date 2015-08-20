@@ -1,4 +1,7 @@
 /* style.scss */
+input {
+  color: #000; }
+
 body {
   background-color: #2E2D3A;
   color: #fff;
