@@ -7,7 +7,7 @@ input {
   color: #000;
 }
 
-body {
+html, body {
   background-color: $bg-page;
   color: $txt-clr-main;
   font-family: $font-fam-body;
@@ -50,32 +50,73 @@ header {
     }
   }
 }
+form {
+  input{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 100;
+    color: $txt-clr-main;
+    border-bottom: 1px solid $txt-clr-complete;
+    margin-bottom: 25px;
+    &:focus {
+      outline: none;
+    }
+
+  }
+  .btn{
+    @include border-radius(4px);
+    border: 1px solid $txt-clr-complete;
+    outline: none !important;
+    font-family: $font-fam-headings;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    color: $txt-clr-complete;
+
+
+  }
+  //.btn-positive{
+  //  background-color: $task-three-color;
+  //  &:hover{
+  //    background-color: darken( $task-three-color, 10% );
+  //    color: #fff;
+  //  }
+  //}
+  .btn-information {
+    border-color: $color-info;
+    color: $color-info;
+    &:hover{
+      background-color: $color-info;
+      color: #fff;
+      border-color: #fff;
+
+    }
+  }
+}
 .container {
   max-width: $container-max-width;
+}
+.user{
+  background-color: $bg-task;
+  padding: 40px 40px;
+  @media (min-width: 450px){
+    padding: 40px 80px;
+  }
 }
 .task-enter{
   background-color: $bg-task;
   padding: 20px 15px;
   border-bottom: 1px solid $txt-clr-complete;
   input.task-name {
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid $txt-clr-complete;
-    width: 100%;
-    font-size: 20px;
-    font-weight: 100;
-    &:focus {
-      outline: none;
-    }
+    margin-bottom: 0px;
   }
   input.task-post {
-    background-color: transparent;
-    border: 1px solid $txt-clr-complete;
     color: $txt-clr-complete;
-    width: 100%;
     padding: 5px;
-    font-family: $font-fam-headings;
-    @include border-radius(4px);
+    margin-bottom: 0px;
+    font-size: 14px;
     &:hover {
       border-color: $txt-clr-main;
       color: $txt-clr-main;

@@ -28,12 +28,10 @@
                 <input class="task-name" ng-model="note.text"  type="text" name="text" id="text" placeholder="Enter Task"/>
             </div>
             <div class="col-xs-4 col-sm-3">
-                <input type="submit" class="task-post" value="Create Task" ng-click="addTask(note)"/>
+                <input type="submit" class="btn task-post" value="Create Task" ng-click="addTask(note)"/>
             </div>
         </form>
     </div>
-
-
     <div class="task-list">
         <div class="task row" ng-repeat="task in taskData | orderBy: ['complete', '_id']">
             <div class="task-complete col-xs-2">

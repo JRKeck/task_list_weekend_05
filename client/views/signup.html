@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager | Sign Up</title>
+    <title>Task Manager | Create Account</title>
 
     <!--STYLES-->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100|Lato:400,700' rel='stylesheet' type='text/css'>
@@ -15,24 +15,26 @@
 </head>
 <body ng-controller="TaskController">
 <header>
-    <h1>Sign Up</h1>
+    <h1>Create Account</h1>
     <button class="refresh" ng-click="getTasks()"><i class="fa fa-refresh fa-2x"></i><span class="hidden-xs">Refresh Tasks</span></button>
     <!--<button class="task-add" ng-click=""><span class="hidden-xs">Add Task</span><i class="fa fa-plus-circle fa-2x"></i></button>-->
 </header>
 <div class="container">
-    <form action="/signup" method="post">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username"/>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password"/>
-        </div>
-        <div>
-            <input type="submit" value="Register"/>
-        </div>
-    </form>
+    <div class="user row">
+        <form action="/signup" novalidate method="post">
+            <div>
+                <label class="sr-only" for="username">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Username"/>
+            </div>
+            <div>
+                <label class="sr-only" for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Password" ng-minlength=5/>
+            </div>
+            <div>
+                <input class="btn btn-positive" type="submit" value="Register"/>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!--SCRIPTS-->

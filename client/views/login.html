@@ -20,20 +20,26 @@
     <!--<button class="task-add" ng-click=""><span class="hidden-xs">Add Task</span><i class="fa fa-plus-circle fa-2x"></i></button>-->
 </header>
 <div class="container">
-    <form action="/login" method="post">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username"/>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password"/>
-        </div>
-        <div>
-            <input type="submit" value="Log In"/>
-            <a href="/signup">Register</a>
-        </div>
-    </form>
+    <div class="user row">
+        <form action="/login" method="post">
+            <div>
+                <label class="sr-only" for="username">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Username"/>
+            </div>
+            <div>
+                <label class="sr-only" for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Password"/>
+            </div>
+            <div>
+                <input class="btn btn-positive" type="submit" value="Log In"/>
+            </div>
+            <div>
+                <a href="/signup">
+                    <input class="btn btn-information" type="button" value="Create Account"/>
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!--SCRIPTS-->

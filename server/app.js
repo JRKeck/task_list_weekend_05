@@ -22,7 +22,8 @@ var mongoose = require("mongoose");
 //mongoose.connect('mongodb://localhost/todo_task_app');
 
 // Mongo setup
-var mongoURI = "mongodb://localhost/todo_task_app";
+//var mongoURI = "mongodb://localhost/todo_task_app";
+var mongoURI = "mongodb://JRKeck:koda8587@ds051853.mongolab.com:51853/task-list";
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on('error', function (err) {
@@ -45,6 +46,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: { maxAge: 60000, secure: false }
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use('local', new localStrategy({ passReqToCallback : true, usernameField: 'username' },
